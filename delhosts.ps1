@@ -4,6 +4,7 @@ $length = get-content C:\Windows\system32\drivers\etc\hosts | Measure-Object -Li
 #load into object | remove last two lines | write new file
 $op = get-content C:\Windows\system32\drivers\etc\hosts | Select-Object -first ($length.lines-2)
 #.lines takes the value so you don't get the whole object
+#specifying the encoding is necessary, or the whole hosts file turns to gibberish.
 write-output $op | out-file -Encoding UTF8 C:\Windows\system32\drivers\etc\hosts
 
 
